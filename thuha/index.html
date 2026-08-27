@@ -1,0 +1,52 @@
+<div class="mb-4">
+  <h5 class="mb-3">📝 Bài 1 – Danh Sách Sản Phẩm (20 sản phẩm)</h5>
+
+  <!-- Thanh tìm kiếm realtime: (ngModelChange) kích hoạt onSearch() ngay khi gõ từng ký tự -->
+  <div class="mb-3" style="max-width: 400px;">
+    <label class="form-label">Tìm kiếm theo tên sản phẩm:</label>
+    <input
+      type="text"
+      class="form-control"
+      placeholder="Nhập tên để lọc ngay lập tức..."
+      [(ngModel)]="searchName"
+      (ngModelChange)="onSearch()"
+    />
+    <small class="text-muted">
+      Đang hiển thị {{ filteredProducts.length }} / {{ products.length }} sản phẩm
+    </small>
+  </div>
+
+  <!-- Bảng danh sách sản phẩm -->
+  <div class="table-responsive">
+    <table class="table table-bordered table-hover table-sm">
+      <thead class="table-dark">
+        <tr>
+          <th style="width:50px">STT</th>
+          <th style="width:120px">Mã SP</th>
+          <th>Tên Sản Phẩm</th>
+          <th style="width:160px">Danh Mục</th>
+          <th style="width:180px" class="text-end">Giá Bán (VND)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of filteredProducts; let i = index">
+          <td class="text-center text-muted">{{ i + 1 }}</td>
+          <td><code>{{ item.id }}</code></td>
+          <td>{{ item.name }}</td>
+          <td><span class="badge bg-secondary">{{ item.category }}</span></td>
+          <td class="text-end fw-bold text-success">{{ formatVND(item.price) }}</td>
+        </tr>
+        <tr *ngIf="filteredProducts.length === 0">
+          <td colspan="5" class="text-center text-muted py-4">
+            Không tìm thấy sản phẩm nào với từ khóa "<strong>{{ searchName }}</strong>"
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Thống kê giá trung bình -->
+  <div *ngIf="filteredProducts.length > 0" class="text-muted small mt-1">
+    Giá trung bình: <strong>{{ formatVND(getAveragePrice()) }}</strong>
+  </div>
+</div>
