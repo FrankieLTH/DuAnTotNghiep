@@ -5,44 +5,33 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Le Trung Hieu</title>
-    <style>
-        body {
-            align-items: center;
-            background: #f4f7fb;
-            color: #1f2937;
-            display: flex;
-            font-family: Arial, sans-serif;
-            justify-content: center;
-            margin: 0;
-            min-height: 100vh;
-        }
-
-        main {
-            background: #ffffff;
-            border: 1px solid #dbe3ef;
-            border-radius: 8px;
-            max-width: 520px;
-            padding: 32px;
-            text-align: center;
-        }
-
-        h1 {
-            color: #0f766e;
-            margin: 0 0 12px;
-        }
-
-        p {
-            font-size: 18px;
-            margin: 0;
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-    <main>
-        <h1>Xin chao!</h1>
-        <p>Trang HTML cua Le Trung Hieu</p>
+    <main class="profile">
+        <section class="intro">
+            <p class="label">Bai tap HTML ca nhan</p>
+            <h1>Le Trung Hieu</h1>
+            <p class="description">
+                Day la trang web rieng cua toi, duoc tao bang HTML, CSS va JavaScript.
+            </p>
+            <button id="changeMessage" type="button">Doi loi chao</button>
+        </section>
+
+        <section class="details" aria-label="Thong tin ca nhan">
+            <article>
+                <h2>So thich</h2>
+                <p>Lap trinh web, hoc cong nghe moi va xay dung san pham thuc te.</p>
+            </article>
+            <article>
+                <h2>Muc tieu</h2>
+                <p>Hoan thanh du an tot nghiep va nang cao ky nang phat trien website.</p>
+            </article>
+        </section>
     </main>
+
+    <script src="script.js"></script>
 </body>
 
 </html>
