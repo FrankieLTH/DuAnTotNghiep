@@ -1,0 +1,53 @@
+xác định những cái cần làm 
+- xác định chức năng chính:
+-
+- users:
+	+ xem phòng -> chi tiết phòng (hình ảnh, giá,...)
+	+ đăng ký/ đặng nhập
+	+ kiểm lịch (Available/ booked)
+	+ đặt phòng
+		+ Họ tên, gmail, sdt, số người
+		+ Ngày / Đặt theo giờ trong ngày ( 1 hoặc 3 tiếng)/ qua đêm
+	+ thanh toán:
+		+ PayOS
+	+ nhận mã khoá
+		+ nhận qua gmail (ZaloOS nếu mò ra)
+	+ quản lý booking
+		+ xem booking
+		+ trạng thái thanh toán
+		+ lịch sử lưu trú
+		+ Huỷ booking / hoàn tiền
+	+ AI chatbox
+		+ Chưa đăng nhập: Nhận mã thanh toán => lên lịch trình du lịch theo thời gian lưu trú
+		+ Đã đăng nhập: lấy thông booking từ database khách hàng
+		+ trả lời mật khẩu cửa của khách hàng
+- admin
+	+ Dashboard
+		+ Thống kê doanh thu theo (tuần/ tháng/ quý/năm/tổng)
+		+ Phòng đang trống
+		+ Đang chờ hoàn tiền
+		+ Booking trong tuần
+		+ Sắp checkout (chủ động check khi khách về sớm)
+	+ Quản lý chi nhánh:
+		+ CRUH
+	+ Quản lý phòng:
+		+ CRUH
+		+ Trạng thái/Giá/Khuyến mãi/Check in/check out
+		** Ý kiến cân nhắc: seat killer
+	+ quản lý khách hàng"
+		+ thông tài khoảng đã đăng nhập (có thể khoá tài khoảng)
+		+ chưa đăng nhập: hiển thị theo gmail
+	+ quản lý booking
+		+ hiển thị danh sách booking (lọc theo tuần/tháng/ năm/ tổng)
+			+ search booking theo mã
+		+ RUD đơn hàng
+	+ quản lý access code:
+		+ xem mã khoá các phòng thời điểm hiện tại
+		+ xem các mật khẩu cần đổi trong ngày
+		 
+
+
+
+Hoàn tiền:
+1. Cách ngày hoàn tiền 2> ngày thì hoàn tiền 50%
+2. <2 không hoàn tiền.
