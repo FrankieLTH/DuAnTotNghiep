@@ -7,39 +7,43 @@ interface HeroSectionProps {
 
 export const HeroSection: React.FC<HeroSectionProps> = ({ onSearch }) => {
   return (
-    <section id="hero" className="relative min-h-[580px] md:min-h-[640px] flex items-end justify-center pb-12 overflow-hidden">
-      {/* Background Image with Dark Overlay Gradient */}
+    <section className="relative w-full min-h-[92vh] sm:min-h-screen flex flex-col justify-between pt-32 pb-8 md:pb-12 overflow-hidden">
+      {/* Background Image với hiệu ứng phản chiếu hồ bơi hoàng hôn đúng như thiết kế */}
       <div className="absolute inset-0 z-0">
         <img
-          src="https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format&fit=crop&w=1920&q=80"
-          alt="Đồi Bông Gòn Homestay Vũng Tàu"
-          className="w-full h-full object-cover object-center transform scale-105"
+          src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=2000&q=85"
+          alt="Đồi Bông Gòn Homestay Hồ Bơi"
+          className="w-full h-full object-cover object-center transform scale-100 filter brightness-90"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-black/30" />
+        {/* Lớp phủ chuyển màu gradient tối phía trên và phía dưới để làm nổi bật chữ */}
+        <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/30 to-black/75 pointer-events-none" />
       </div>
 
-      {/* Content Container */}
-      <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-white">
-        
-        {/* Sub-header tag */}
-        <div className="inline-block bg-white/20 backdrop-blur-md px-4 py-1.5 rounded-full border border-white/30 text-xs font-sans font-bold tracking-[0.2em] uppercase mb-4 text-amber-100">
-          ĐỒI BÔNG GÒN HOMESTAY • VŨNG TÀU
+      {/* Phần nội dung Tiêu đề chính giữa */}
+      <div className="relative z-10 w-full max-w-5xl mx-auto px-4 text-center my-auto pt-8 md:pt-16">
+        {/* Biểu tượng / Crest nhỏ tinh tế */}
+        <div className="flex justify-center mb-4">
+          <div className="h-0.5 w-12 bg-white/40 my-auto"></div>
+          <span className="mx-3 text-amber-200/90 text-xs tracking-[0.3em] uppercase font-sans font-medium">
+            Sanctuary & Art Resort
+          </span>
+          <div className="h-0.5 w-12 bg-white/40 my-auto"></div>
         </div>
 
-        {/* Hero Title (Playfair Display) */}
-        <h1 className="font-serif font-bold text-3xl sm:text-5xl md:text-6xl lg:text-7xl leading-tight mb-4 tracking-tight drop-shadow-lg">
-          Kỳ nghỉ bình yên <br className="hidden sm:inline" />
-          trên Đồi Bông Gòn
+        {/* Tiêu đề ĐỒI BÔNG GÒN cỡ lớn serif chuẩn mẫu */}
+        <h1 className="font-serif font-bold text-4xl sm:text-6xl md:text-7xl lg:text-8xl text-white tracking-[0.18em] uppercase leading-tight drop-shadow-2xl">
+          ĐỒI BÔNG GÒN
         </h1>
 
-        {/* Hero Subtitle */}
-        <p className="font-sans text-base sm:text-lg md:text-xl text-white/90 max-w-2xl mx-auto mb-10 font-light drop-shadow-md">
-          Tự do trải nghiệm với hệ thống tự check-in 24/7 riêng tư tuyệt đối.
+        {/* Phụ đề nghệ thuật nghỉ dưỡng */}
+        <p className="mt-4 sm:mt-6 font-sans text-xs sm:text-sm md:text-base text-white/90 tracking-[0.25em] sm:tracking-[0.35em] uppercase font-light max-w-3xl mx-auto drop-shadow-lg">
+          KHÔNG GIAN NGHỆ THUẬT NGHỈ DƯỠNG ĐẬM CHẤT BẢN ĐỊA
         </p>
+      </div>
 
-        {/* Search Booking Bar Widget */}
+      {/* Thanh Search Booking Bar nổi ở phía dưới chân Hero */}
+      <div className="relative z-20 w-full mt-8 md:mt-12">
         <SearchBookingBar onSearch={onSearch} />
-
       </div>
     </section>
   );

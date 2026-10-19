@@ -13,11 +13,23 @@ export const CheckoutPage: React.FC<CheckoutPageProps> = ({
   onGoBack,
   onCompleteBooking,
 }) => {
-  const [fullName, setFullName] = useState('Nguyễn Văn An');
-  const [phone, setPhone] = useState('0908.123.456');
-  const [email, setEmail] = useState('an.nguyen@email.com');
-  const [checkInTime, setCheckInTime] = useState('15:00 - 16:00 (Buổi chiều)');
-  const [note, setNote] = useState('Nhận phòng khoảng 15:00, cần chuẩn bị thêm đá lạnh BBQ ngoài ban công.');
+  const roomTitle = bookingData?.roomTitle || 'Phòng P101 - Studio Cozy Standard';
+  const branchName = bookingData?.branch || 'Sunshine Villa Phố Cổ';
+  const address = bookingData?.address || '123 Phố Hàng Bạc, Hoàn Kiếm, Hà Nội';
+  const checkInDate = bookingData?.checkInDate || '2026-09-15';
+  const checkOutDate = bookingData?.checkOutDate || '2026-09-16';
+  const nights = bookingData?.nights || 1;
+  const guestCount = bookingData?.guestCount || 2;
+  const totalPrice = bookingData?.totalPrice || 550000;
+  const selectedServices = bookingData?.selectedServices || [];
+  const discountAmount = bookingData?.discountAmount || 0;
+  const voucherCode = bookingData?.voucherCode || '';
+
+  const [fullName, setFullName] = useState('Nguyễn Nhật Huy');
+  const [phone, setPhone] = useState('0901.234.567');
+  const [email, setEmail] = useState('huy.nguyen@homestay.com');
+  const [checkInTime, setCheckInTime] = useState('14:00 - 15:00 (Buổi chiều)');
+  const [note, setNote] = useState('Nhận phòng tự động bằng Smart Lock, cảm ơn homestay.');
 
   const [paymentMethod, setPaymentMethod] = useState<'vietqr' | 'card' | 'e-wallet'>('vietqr');
   const [isUploadingFront, setIsUploadingFront] = useState(false);
@@ -42,7 +54,7 @@ export const CheckoutPage: React.FC<CheckoutPageProps> = ({
               Đặt Phòng & Kích Hoạt Mã PIN Thành Công!
             </h1>
             <p className="text-xs font-sans text-brand-earth/80 mt-2">
-              Mã đơn hàng: <strong className="font-mono text-brand-earth">#DBG-89241</strong> • Chi nhánh 2: Lưng Chừng Biển
+              Mã đơn hàng: <strong className="font-mono text-brand-earth">#BK20260912</strong> • {branchName}
             </p>
           </div>
 
@@ -53,28 +65,29 @@ export const CheckoutPage: React.FC<CheckoutPageProps> = ({
             </span>
             <div className="flex items-center justify-center gap-2 text-3xl md:text-4xl font-mono font-bold text-brand-amber tracking-widest my-2">
               <span className="bg-white/10 px-3 py-2 rounded-xl">8</span>
+              <span className="bg-white/10 px-3 py-2 rounded-xl">5</span>
               <span className="bg-white/10 px-3 py-2 rounded-xl">2</span>
               <span className="bg-white/10 px-3 py-2 rounded-xl">9</span>
-              <span className="bg-white/10 px-3 py-2 rounded-xl">4</span>
-              <span className="bg-white/10 px-3 py-2 rounded-xl">1</span>
-              <span className="bg-white/10 px-3 py-2 rounded-xl">5</span>
+              <span className="bg-white/10 px-3 py-2 rounded-xl">6</span>
+              <span className="bg-white/10 px-3 py-2 rounded-xl">3</span>
             </div>
             <p className="text-[11px] text-secondary-sand/90">
-              Cách mở: Chạm lòng bàn tay bật sáng bàn phím số ➔ Nhập <strong className="text-white">829415</strong> ➔ Nhấn phím <strong className="text-white">#</strong>
+              Cách mở: Chạm lòng bàn tay bật sáng bàn phím số ➔ Nhập <strong className="text-white">852963</strong> ➔ Nhấn phím <strong className="text-white">#</strong>
             </p>
           </div>
 
           <div className="bg-secondary-cream p-4 rounded-xl border border-secondary-sand text-xs text-brand-earth/80 text-left space-y-1">
-            <p>📲 Mã PIN và hướng dẫn đường đi đã được tự động gửi qua tin nhắn <strong>Zalo / SMS (0908.123.456)</strong>.</p>
-            <p>🕒 Giờ nhận phòng: <strong>14:00 15/11/2024</strong> | Giờ trả phòng: <strong>12:00 16/11/2024</strong></p>
+            <p>🏡 Phòng lưu trú: <strong>{roomTitle}</strong> ({branchName}).</p>
+            <p>📲 Mã PIN và hướng dẫn nhận phòng đã được gửi qua Email <strong>{email}</strong> & SĐT <strong>{phone}</strong>.</p>
+            <p>🕒 Giờ nhận phòng: <strong>14:00, {checkInDate}</strong> | Giờ trả phòng: <strong>12:00, {checkOutDate}</strong></p>
           </div>
 
           <div className="flex items-center justify-center gap-4 pt-2">
             <Button variant="primary" onClick={onCompleteBooking}>
-              Xem Trong Tài Khoản Cá Nhân
+              Xem Trong Quản Lý Đơn
             </Button>
             <Button variant="ghost" onClick={onGoBack}>
-              Trở Về Trang Chủ
+              Trở Về Chi Tiết Phòng
             </Button>
           </div>
         </div>
@@ -389,19 +402,19 @@ export const CheckoutPage: React.FC<CheckoutPageProps> = ({
               {/* Room Card Preview */}
               <div className="flex items-center gap-3 p-3 bg-secondary-cream rounded-xl border border-secondary-sand">
                 <img
-                  src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=200&q=80"
-                  alt="Sunset Penthouse"
+                  src="https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format&fit=crop&w=200&q=80"
+                  alt={roomTitle}
                   className="w-16 h-16 object-cover rounded-lg shrink-0"
                 />
                 <div>
                   <span className="text-[10px] font-semibold text-brand-terracotta uppercase block">
-                    HẠNG SANG TRỌNG
+                    HOMESTAY TỰ ĐỘNG HÓA
                   </span>
                   <h4 className="text-xs font-serif font-bold text-brand-earth">
-                    Sunset Penthouse & Jacuzzi 270°
+                    {roomTitle}
                   </h4>
                   <span className="text-[11px] text-brand-earth/70 block mt-0.5">
-                    📍 CN 2: Hải Đăng Retreat (Triển Biển)
+                    📍 {branchName} • ({address})
                   </span>
                 </div>
               </div>
@@ -410,37 +423,40 @@ export const CheckoutPage: React.FC<CheckoutPageProps> = ({
               <div className="grid grid-cols-2 gap-2 bg-white p-3 rounded-xl border border-secondary-sand text-xs">
                 <div>
                   <span className="text-[10px] text-brand-earth/60 block">NHẬN PHÒNG (CHECK-IN)</span>
-                  <strong className="text-brand-earth block">14:00, 15 Thg 11, 2024</strong>
-                  <span className="text-[10px] text-semantic-success">Tự do nhận phòng Smart Lock</span>
+                  <strong className="text-brand-earth block">14:00, {checkInDate}</strong>
+                  <span className="text-[10px] text-semantic-success">Khóa Smart Lock TTLock 24/7</span>
                 </div>
                 <div>
                   <span className="text-[10px] text-brand-earth/60 block">TRẢ PHÒNG (CHECK-OUT)</span>
-                  <strong className="text-brand-earth block">12:00, 16 Thg 11, 2024</strong>
-                  <span className="text-[10px] text-brand-earth/70">1 Đêm • 2 Người lớn</span>
+                  <strong className="text-brand-earth block">12:00, {checkOutDate}</strong>
+                  <span className="text-[10px] text-brand-earth/70">{nights} Đêm • {guestCount} Khách</span>
                 </div>
               </div>
 
               {/* Itemized list */}
               <div className="space-y-2 text-xs text-brand-earth/80 border-t border-secondary-sand/60 pt-4">
                 <div className="flex justify-between">
-                  <span>Giá phòng tiêu chuẩn (1 đêm):</span>
-                  <span>1.890.000đ</span>
+                  <span>Tiền phòng tiêu chuẩn ({nights} đêm):</span>
+                  <span>{((totalPrice + discountAmount) - selectedServices.reduce((acc: number, s: any) => acc + Number(s.price), 0)).toLocaleString('vi-VN')}đ</span>
                 </div>
-                <div className="flex justify-between">
-                  <span>Khay trà thảo mộc chào mừng:</span>
-                  <span className="text-semantic-success font-semibold">Miễn phí (0đ)</span>
-                </div>
-                <div className="flex justify-between">
-                  <span>Set BBQ hải sản Vũng Tàu (2 người):</span>
-                  <span>+350.000đ</span>
-                </div>
-                <div className="flex justify-between text-brand-terracotta">
-                  <span>Mã giảm giá BONGGON15:</span>
-                  <span>-283.500đ</span>
-                </div>
+
+                {selectedServices.map((svc: any) => (
+                  <div key={svc.id} className="flex justify-between">
+                    <span>{svc.name}:</span>
+                    <span>+{Number(svc.price).toLocaleString('vi-VN')}đ</span>
+                  </div>
+                ))}
+
+                {discountAmount > 0 && (
+                  <div className="flex justify-between text-brand-terracotta">
+                    <span>Mã ưu đãi {voucherCode}:</span>
+                    <span>-{discountAmount.toLocaleString('vi-VN')}đ</span>
+                  </div>
+                )}
+
                 <div className="flex justify-between">
                   <span>Phí dọn dẹp & Kích hoạt mã Smart Lock:</span>
-                  <span className="text-semantic-success font-semibold">0đ (Tài trợ)</span>
+                  <span className="text-semantic-success font-semibold">0đ (Tài trợ miễn phí)</span>
                 </div>
               </div>
 
@@ -448,10 +464,10 @@ export const CheckoutPage: React.FC<CheckoutPageProps> = ({
               <div className="bg-brand-tint/60 p-4 rounded-xl border border-brand-terracotta/30 flex items-center justify-between">
                 <div>
                   <span className="text-xs font-bold text-brand-earth block">Tổng thanh toán:</span>
-                  <span className="text-[11px] text-brand-earth/70 block">Đã bao gồm 8% VAT & phí dịch vụ</span>
+                  <span className="text-[11px] text-brand-earth/70 block">Đã bao gồm VAT & phí dịch vụ</span>
                 </div>
                 <span className="text-2xl font-serif font-bold text-brand-terracotta">
-                  1.956.500đ
+                  {totalPrice.toLocaleString('vi-VN')}đ
                 </span>
               </div>
 
@@ -459,10 +475,10 @@ export const CheckoutPage: React.FC<CheckoutPageProps> = ({
               <Button
                 variant="primary"
                 size="lg"
-                className="w-full shadow-md"
+                className="w-full shadow-md font-bold uppercase tracking-wider"
                 onClick={handleFinishPayment}
               >
-                🔒 Xác Nhận & Hoàn Tất (1.956.500đ)
+                🔒 Xác Nhận & Hoàn Tất ({totalPrice.toLocaleString('vi-VN')}đ)
               </Button>
 
               {/* Assurance badges */}

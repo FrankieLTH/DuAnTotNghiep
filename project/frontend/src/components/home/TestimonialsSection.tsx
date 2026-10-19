@@ -4,103 +4,92 @@ export const TestimonialsSection: React.FC = () => {
   const reviews = [
     {
       id: 1,
-      name: 'Minh Trang',
-      role: 'Khách lưu trú • Đi cặp đôi',
-      room: 'The Garden Suite',
-      avatar: 'MT',
-      comment: 'Không gian thơm mùi gỗ mộc, check-in bằng mã Smart Lock riêng tư và tiện lợi tuyệt đối.',
+      name: 'Nguyễn Minh Anh',
+      location: 'Hà Nội',
+      time: 'Tháng 9, 2024',
+      avatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=200&q=80',
+      comment:
+        'Không gian tuyệt vời hơn cả mong đợi! Tự check-in bằng mã PIN rất tiện lợi, không phải chờ đợi ai. Phòng sạch bong, view nhìn ra triền đồi ngắm hoàng hôn cực kỳ lãng mạn.',
+      stars: 5,
     },
     {
       id: 2,
-      name: 'Quốc Bảo',
-      role: 'Khách lưu trú • Gia đình 5 người',
-      room: 'The Family Attic',
-      avatar: 'QB',
-      comment: 'Căn hộ rộng rãi, bếp nấu BBQ lồng gió biển, tự do ra vào không vướng bận chìa khóa.',
+      name: 'Trần Hoàng Nam',
+      location: 'TP. Hồ Chí Minh',
+      time: 'Tháng 10, 2024',
+      avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=200&q=80',
+      comment:
+        'Một nơi trốn bình yên thực sự giữa Vũng Tàu nhộn nhịp. Thiết kế mộc mạc mang đầy tính nghệ thuật. Bữa sáng rất ngon miệng và chu đáo, chắc chắn mình sẽ quay lại nhiều lần nữa!',
+      stars: 5,
     },
     {
       id: 3,
-      name: 'Thảo Linh',
-      role: 'Khách lưu trú • Penthouse 270°',
-      room: 'Sunset Penthouse',
-      avatar: 'TL',
-      comment: 'Jacuzzi ngắm hoàng hôn đỉnh nhất Vũng Tàu. Nhận mã PIN tự động mở phòng rất ưng ý.',
+      name: 'Lê Thu Trang',
+      location: 'Đà Nẵng',
+      time: 'Tháng 10, 2024',
+      avatar: 'https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=200&q=80',
+      comment:
+        'Cả gia đình mình đã có kỳ nghỉ trọn vẹn ở căn Villa nguyên căn. Hồ bơi sạch sẽ, khu BBQ rộng rãi. Không khí trong lành và yên tĩnh tuyệt đối, rất đáng từng đồng bỏ ra.',
+      stars: 5,
     },
   ];
 
   return (
-    <section id="reviews" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 my-16">
-      
-      {/* Header & Rating Summary */}
-      <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-10">
-        <div>
-          <span className="text-xs font-sans font-bold uppercase tracking-wider text-[#C85A32] block mb-1">
-            — TRẢI NGHIỆM THỰC TẾ TỪ KHÁCH LƯU TRÚ
+    <section className="py-16 md:py-24 px-4 bg-[#F5EFE6]/60 border-t border-[#E8DFD1]/60">
+      <div className="max-w-7xl mx-auto">
+        {/* Tiêu đề Đánh Giá */}
+        <div className="text-center mb-12 sm:mb-16">
+          <span className="text-xs uppercase tracking-[0.25em] font-semibold text-[#C85A32] block mb-2">
+            Cảm nhận từ du khách
           </span>
-          <h2 className="font-serif font-bold text-3xl md:text-4xl text-[#3E2C23] max-w-xl">
-            Những khoảnh khắc an yên tại Đồi Bông Gòn
+          <h2 className="font-serif font-bold text-2xl sm:text-3xl md:text-4xl text-[#3E2C23] tracking-[0.15em] uppercase">
+            ĐÁNH GIÁ
           </h2>
-          <p className="font-sans text-sm text-[#3E2C23]/70 font-light mt-2 max-w-lg">
-            Điểm đánh giá 4.95/5 từ hơn 250+ lượt khách ghé thăm, tìm kiếm sự tĩnh lặng và nét mộc mạc bên triền Núi Nhỏ.
-          </p>
         </div>
 
-        {/* Khung tổng hợp điểm đánh giá */}
-        <div className="bg-white p-4 px-6 rounded-2xl border border-[#E8DFD1] shadow-sm flex items-center gap-6">
-          <div className="flex items-center gap-3 border-r border-[#E8DFD1] pr-6">
-            <span className="font-serif font-bold text-3xl text-[#3E2C23]">4.95</span>
-            <div>
-              <div className="text-amber-500 text-xs">★★★★★</div>
-              <span className="text-[10px] font-sans text-[#3E2C23]/60 block mt-0.5">250+ lượt đánh giá</span>
-            </div>
-          </div>
-          <div>
-            <span className="font-sans font-bold text-lg text-[#C85A32] block">99.2% Hài lòng</span>
-            <span className="text-[10px] font-sans text-[#3E2C23]/60 block">Về độ riêng tư & Smart Lock</span>
-          </div>
-        </div>
-      </div>
-
-      {/* Cards Nhận xét khách hàng */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
-        {reviews.map((rev) => (
-          <div
-            key={rev.id}
-            className="bg-white p-6 rounded-3xl border border-[#E8DFD1] shadow-xs hover:shadow-md transition-shadow flex flex-col justify-between"
-          >
-            <div>
-              <div className="flex items-center justify-between mb-4">
-                <div className="text-amber-500 text-sm">★★★★★</div>
-                <span className="text-[11px] font-sans text-[#3E2C23]/50 bg-[#FAF7F2] px-2.5 py-1 rounded-md">
-                  {rev.room}
-                </span>
-              </div>
-              <p className="font-sans text-sm text-[#3E2C23]/90 italic leading-relaxed mb-6">
-                "{rev.comment}"
-              </p>
-            </div>
-
-            <div className="flex items-center gap-3 pt-4 border-t border-[#E8DFD1]/60">
-              <div className="w-10 h-10 rounded-full bg-[#E8DFD1] text-[#3E2C23] font-sans font-bold text-xs flex items-center justify-center">
-                {rev.avatar}
-              </div>
+        {/* 3 Thẻ Đánh Giá Chuẩn Mẫu Hình Ảnh */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
+          {reviews.map((rev) => (
+            <div
+              key={rev.id}
+              className="bg-white rounded-3xl p-6 sm:p-8 shadow-sm hover:shadow-lg transition-all duration-300 border border-[#E8DFD1]/70 flex flex-col justify-between"
+            >
               <div>
-                <h4 className="font-sans font-bold text-sm text-[#3E2C23]">{rev.name}</h4>
-                <span className="text-[10px] font-sans text-[#3E2C23]/60 block">{rev.role}</span>
+                {/* 5 Sao Vàng */}
+                <div className="flex items-center gap-1 text-[#E07A5F] mb-4">
+                  {[...Array(rev.stars)].map((_, i) => (
+                    <svg key={i} className="w-4 h-4 fill-current" viewBox="0 0 20 20">
+                      <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                    </svg>
+                  ))}
+                </div>
+
+                {/* Nội dung đánh giá */}
+                <p className="font-sans text-xs sm:text-sm text-[#5C4D44] leading-relaxed italic mb-6">
+                  “{rev.comment}”
+                </p>
+              </div>
+
+              {/* Thông tin khách hàng */}
+              <div className="flex items-center gap-3 pt-4 border-t border-[#F2ECE1]">
+                <img
+                  src={rev.avatar}
+                  alt={rev.name}
+                  className="w-10 h-10 rounded-full object-cover border border-[#E8DFD1]"
+                />
+                <div>
+                  <h4 className="font-serif font-bold text-sm text-[#3E2C23]">
+                    {rev.name}
+                  </h4>
+                  <p className="text-[11px] text-[#8C7A70]">
+                    {rev.location} • {rev.time}
+                  </p>
+                </div>
               </div>
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
-
-      {/* Button CTA xem tất cả đánh giá */}
-      <div className="text-center">
-        <button className="inline-flex items-center gap-2 bg-white border border-[#E8DFD1] hover:border-[#C85A32] text-[#3E2C23] hover:text-[#C85A32] font-sans font-bold text-sm px-6 py-3 rounded-2xl shadow-xs transition-all cursor-pointer">
-          <span>📷 Xem tất cả 250+ đánh giá</span>
-          <span>↗</span>
-        </button>
-      </div>
-
     </section>
   );
 };

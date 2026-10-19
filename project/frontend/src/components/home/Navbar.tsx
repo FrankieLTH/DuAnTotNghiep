@@ -1,5 +1,4 @@
-import React, { useState } from 'react';
-import logoImg from '../../assets/logo.jpg';
+import React, { useState, useEffect } from 'react';
 
 interface NavbarProps {
   onOpenBookingModal?: () => void;
@@ -7,8 +6,25 @@ interface NavbarProps {
   currentView?: string;
 }
 
-export const Navbar: React.FC<NavbarProps> = ({ onOpenBookingModal, onNavigate, currentView = 'home' }) => {
+export const Navbar: React.FC<NavbarProps> = ({
+  onOpenBookingModal,
+  onNavigate,
+  currentView = 'home',
+}) => {
+  const [isScrolled, setIsScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 40) {
+        setIsScrolled(true);
+      } else {
+        setIsScrolled(false);
+      }
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   const handleNav = (view: string) => {
     setMenuOpen(false);
@@ -18,100 +34,185 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenBookingModal, onNavigate, 
   };
 
   return (
-    <header className="sticky top-0 z-50 bg-[#FDF9F3]/95 backdrop-blur-md border-b border-[#E8DFD1]/80 shadow-md transition-all">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-24 md:h-28 flex items-center justify-between py-2">
-        
-        {/* Navigation links & Hamburg menu */}
-        <div className="flex items-center gap-6">
+    <>
+      <header
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+          isScrolled
+            ? 'bg-[#2A1D17]/95 backdrop-blur-md shadow-lg py-3'
+            : 'bg-gradient-to-b from-black/70 via-black/30 to-transparent py-4'
+        }`}
+      >
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
+          {/* Menu Button bên trái */}
+          <div className="flex items-center gap-3">
+            <button
+              onClick={() => setMenuOpen(!menuOpen)}
+              className="group flex items-center gap-2.5 px-3 py-2 rounded-full text-white/90 hover:text-white hover:bg-white/10 transition-all cursor-pointer focus:outline-hidden"
+              aria-label="Mở Menu"
+            >
+              {/* Icon 2 vạch ngang + chấm cam giống thiết kế */}
+              <div className="flex flex-col gap-1.5 w-6">
+                <span className="w-full h-0.5 bg-white rounded-full group-hover:bg-[#E07A5F] transition-colors"></span>
+                <div className="flex items-center gap-1">
+                  <span className="w-4 h-0.5 bg-white rounded-full group-hover:bg-[#E07A5F] transition-colors"></span>
+                  <span className="w-1.5 h-1.5 bg-[#C85A32] rounded-full shrink-0"></span>
+                </div>
+              </div>
+              <span className="hidden sm:inline font-sans text-xs tracking-widest uppercase font-semibold text-white/80 group-hover:text-white">
+                Menu
+              </span>
+            </button>
+          </div>
+
+          {/* Logo Đồi Bông Gòn chính giữa */}
           <button
-            onClick={() => setMenuOpen(!menuOpen)}
-            className="inline-flex items-center gap-2 px-3 py-2 rounded-xl text-[#3E2C23] hover:bg-[#E8DFD1]/50 transition-colors cursor-pointer font-sans font-medium text-sm"
-            aria-label="Toggle Menu"
+            onClick={() => handleNav('home')}
+            className="flex flex-col items-center justify-center text-center cursor-pointer group"
           >
-            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-            </svg>
-            <span className="font-bold tracking-wider text-xs uppercase">MENU</span>
+            {/* Biểu tượng logo đỉnh đồi & ngọn núi nghệ thuật */}
+            <div className="flex items-center justify-center text-white/90 group-hover:text-[#E07A5F] transition-colors mb-0.5">
+              <svg
+                className="w-7 h-7 sm:w-8 sm:h-8"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <path d="m8 3 4 8 5-5 5 15H2L8 3z" />
+                <path d="M4.14 15.08A2 2 0 0 0 4 16v4" />
+                <circle cx="12" cy="7" r="1.2" fill="currentColor" />
+              </svg>
+            </div>
+            <span className="font-serif tracking-[0.25em] text-white font-bold text-sm sm:text-base leading-none group-hover:text-amber-100 transition-colors uppercase">
+              ĐỒI BÔNG GÒN
+            </span>
+            <span className="font-sans text-[9px] sm:text-[10px] tracking-[0.3em] text-white/70 uppercase font-light mt-0.5">
+              HOMESTAY
+            </span>
           </button>
 
-          {/* Quick links header desktop */}
-          <nav className="hidden lg:flex items-center space-x-5 text-xs font-bold text-[#3E2C23]/80 font-sans">
+          {/* Nút ĐẶT PHÒNG góc phải bo tròn chuẩn thiết kế */}
+          <div className="flex items-center gap-3">
             <button
-              onClick={() => handleNav('home')}
-              className={`hover:text-[#C85A32] transition-colors ${currentView === 'home' ? 'text-[#C85A32] font-extrabold' : ''}`}
+              onClick={() => handleNav('my-account')}
+              className="hidden md:inline-flex items-center text-white/80 hover:text-white text-xs font-medium tracking-wider px-3 py-1.5 hover:bg-white/10 rounded-full transition-colors cursor-pointer"
             >
-              Trang Chủ
+              Tra cứu phòng
             </button>
             <button
-              onClick={() => handleNav('room-list')}
-              className={`hover:text-[#C85A32] transition-colors ${currentView === 'room-list' ? 'text-[#C85A32] font-extrabold' : ''}`}
+              onClick={onOpenBookingModal || (() => handleNav('room-list'))}
+              className="bg-[#C85A32] hover:bg-[#b04b27] text-white text-xs sm:text-sm font-semibold tracking-wider px-5 sm:px-6 py-2 sm:py-2.5 rounded-full shadow-md hover:shadow-lg transition-all transform active:scale-95 cursor-pointer uppercase font-sans"
             >
-              Hạng Phòng
+              Đặt phòng
             </button>
-            <button
-              onClick={() => handleNav('vouchers')}
-              className={`hover:text-[#C85A32] transition-colors ${currentView === 'vouchers' ? 'text-[#C85A32] font-extrabold' : ''}`}
-            >
-              Ưu Đãi
-            </button>
-            <button
-              onClick={() => handleNav('locations')}
-              className={`hover:text-[#C85A32] transition-colors ${currentView === 'locations' ? 'text-[#C85A32] font-extrabold' : ''}`}
-            >
-              Địa Điểm
-            </button>
-            <button
-              onClick={() => handleNav('support')}
-              className={`hover:text-[#C85A32] transition-colors ${currentView === 'support' ? 'text-[#C85A32] font-extrabold' : ''}`}
-            >
-              Hỗ Trợ 24/7
-            </button>
-          </nav>
+          </div>
         </div>
+      </header>
 
-        {/* Logo Đồi Bông Gòn Homestay ở giữa */}
-        <button onClick={() => handleNav('home')} className="flex items-center justify-center cursor-pointer group py-1">
-          <img
-            src={logoImg}
-            alt="Đồi Bông Gòn Homestay Logo"
-            className="h-20 md:h-24 w-auto object-contain hover:scale-105 transition-transform duration-300 rounded-xl drop-shadow-sm"
-          />
-        </button>
-
-        {/* Góc phải: Account & Nút Đặt phòng */}
-        <div className="flex items-center gap-3">
-          <button
-            onClick={() => handleNav('my-account')}
-            className={`hidden sm:inline-flex items-center gap-2 border border-[#E8DFD1] bg-white text-[#3E2C23] hover:bg-[#FAF7F2] px-3.5 py-2.5 rounded-xl font-sans font-medium text-xs transition-all shadow-xs ${currentView === 'my-account' ? 'border-[#C85A32] text-[#C85A32] font-bold' : ''}`}
-          >
-            <span>👤 Tài Khoản / PIN</span>
-          </button>
-
-          <button
-            onClick={onOpenBookingModal || (() => handleNav('room-list'))}
-            className="inline-flex items-center gap-2 bg-[#C85A32] hover:bg-[#b04a25] text-white px-5 py-3 rounded-xl font-sans font-semibold text-sm shadow-md hover:shadow-lg transition-all active:scale-95 cursor-pointer"
-          >
-            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-            </svg>
-            <span>Đặt phòng</span>
-          </button>
-        </div>
-
-      </div>
-
-      {/* Menu xổ xuống (Mobile & Navigation Drawer) */}
+      {/* Drawer Menu khi mở */}
       {menuOpen && (
-        <div className="bg-[#FAF7F2] border-b border-[#E8DFD1] px-6 py-4 space-y-3 font-sans animate-fadeIn">
-          <button onClick={() => handleNav('home')} className="block text-sm font-semibold text-[#3E2C23] hover:text-[#C85A32] w-full text-left">🏠 Trang chủ</button>
-          <button onClick={() => handleNav('room-list')} className="block text-sm font-semibold text-[#3E2C23] hover:text-[#C85A32] w-full text-left">🛏️ Danh sách hạng phòng</button>
-          <button onClick={() => handleNav('vouchers')} className="block text-sm font-semibold text-[#3E2C23] hover:text-[#C85A32] w-full text-left">🎟️ Ưu đãi & Voucher</button>
-          <button onClick={() => handleNav('locations')} className="block text-sm font-semibold text-[#3E2C23] hover:text-[#C85A32] w-full text-left">📍 Tọa độ địa điểm quanh Homestay</button>
-          <button onClick={() => handleNav('support')} className="block text-sm font-semibold text-[#3E2C23] hover:text-[#C85A32] w-full text-left">🎧 Trung tâm hỗ trợ & Quy định</button>
-          <button onClick={() => handleNav('my-account')} className="block text-sm font-semibold text-[#3E2C23] hover:text-[#C85A32] w-full text-left">🔑 Mã PIN Smart Lock & Tài khoản</button>
+        <div className="fixed inset-0 z-50 flex">
+          <div
+            className="fixed inset-0 bg-black/60 backdrop-blur-xs transition-opacity"
+            onClick={() => setMenuOpen(false)}
+          />
+          <div className="relative w-full max-w-sm bg-[#221610] text-[#FDF9F3] h-full shadow-2xl p-6 sm:p-8 flex flex-col justify-between z-10 animate-in slide-in-from-left duration-300">
+            <div>
+              {/* Header drawer */}
+              <div className="flex items-center justify-between pb-6 border-b border-white/10">
+                <div className="flex flex-col">
+                  <span className="font-serif tracking-widest text-lg font-bold text-white uppercase">
+                    ĐỒI BÔNG GÒN
+                  </span>
+                  <span className="text-[10px] tracking-widest text-[#E07A5F] uppercase font-mono">
+                    Boutique Sanctuary
+                  </span>
+                </div>
+                <button
+                  onClick={() => setMenuOpen(false)}
+                  className="p-2 text-white/60 hover:text-white rounded-full hover:bg-white/10"
+                >
+                  <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                  </svg>
+                </button>
+              </div>
+
+              {/* Menu links */}
+              <nav className="mt-8 space-y-4 font-serif">
+                <button
+                  onClick={() => handleNav('home')}
+                  className={`block w-full text-left text-lg py-2 transition-colors ${
+                    currentView === 'home' ? 'text-[#E07A5F] font-bold' : 'text-white/80 hover:text-white'
+                  }`}
+                >
+                  Trang chủ
+                </button>
+                <button
+                  onClick={() => handleNav('room-list')}
+                  className={`block w-full text-left text-lg py-2 transition-colors ${
+                    currentView === 'room-list' ? 'text-[#E07A5F] font-bold' : 'text-white/80 hover:text-white'
+                  }`}
+                >
+                  Không gian lưu trú & Giá phòng
+                </button>
+                <button
+                  onClick={() => handleNav('vouchers')}
+                  className={`block w-full text-left text-lg py-2 transition-colors ${
+                    currentView === 'vouchers' ? 'text-[#E07A5F] font-bold' : 'text-white/80 hover:text-white'
+                  }`}
+                >
+                  Ưu đãi & Voucher
+                </button>
+                <button
+                  onClick={() => handleNav('locations')}
+                  className={`block w-full text-left text-lg py-2 transition-colors ${
+                    currentView === 'locations' ? 'text-[#E07A5F] font-bold' : 'text-white/80 hover:text-white'
+                  }`}
+                >
+                  Địa điểm tham quan quanh Homestay
+                </button>
+                <button
+                  onClick={() => handleNav('support')}
+                  className={`block w-full text-left text-lg py-2 transition-colors ${
+                    currentView === 'support' ? 'text-[#E07A5F] font-bold' : 'text-white/80 hover:text-white'
+                  }`}
+                >
+                  Dịch vụ & Trung tâm hỗ trợ
+                </button>
+                <button
+                  onClick={() => handleNav('my-account')}
+                  className={`block w-full text-left text-lg py-2 transition-colors ${
+                    currentView === 'my-account' ? 'text-[#E07A5F] font-bold' : 'text-white/80 hover:text-white'
+                  }`}
+                >
+                  Mã PIN & Quản lý đặt phòng
+                </button>
+              </nav>
+            </div>
+
+            {/* Bottom info drawer */}
+            <div className="pt-6 border-t border-white/10 text-xs text-white/60 font-sans space-y-2">
+              <p>Hotline: <span className="text-white font-medium">0938 123 456</span></p>
+              <p>Địa chỉ: Đường Hải Đăng, Phường 2, TP. Vũng Tàu</p>
+              <div className="pt-3">
+                <button
+                  onClick={() => {
+                    setMenuOpen(false);
+                    if (onOpenBookingModal) onOpenBookingModal();
+                    else handleNav('room-list');
+                  }}
+                  className="w-full bg-[#C85A32] text-white py-3 rounded-xl font-bold uppercase tracking-wider text-center text-xs hover:bg-[#b04b27]"
+                >
+                  Đặt phòng ngay
+                </button>
+              </div>
+            </div>
+          </div>
         </div>
       )}
-    </header>
+    </>
   );
 };
-

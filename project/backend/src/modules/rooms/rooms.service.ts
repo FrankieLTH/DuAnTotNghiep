@@ -23,7 +23,8 @@ export class RoomsService {
       .createQueryBuilder('room')
       .leftJoinAndSelect('room.apartment', 'apartment')
       .leftJoinAndSelect('room.room_type', 'room_type')
-      .leftJoinAndSelect('room.images', 'images');
+      .leftJoinAndSelect('room.images', 'images')
+      .leftJoinAndSelect('room.amenities', 'amenities');
 
     if (query.apartment_id) {
       qb.andWhere('room.apartment_id = :apartment_id', { apartment_id: query.apartment_id });
@@ -39,6 +40,7 @@ export class RoomsService {
       id: r.id,
       apartment_id: r.apartment_id,
       apartment_name: r.apartment?.name,
+      address: r.apartment?.address,
       room_type_id: r.room_type_id,
       room_type_name: r.room_type?.name,
       room_number: r.room_number,
@@ -47,13 +49,14 @@ export class RoomsService {
       max_occupancy: r.room_type ? r.room_type.max_occupancy : 2,
       last_maintenance_date: r.last_maintenance_date,
       images: r.images ? r.images.map((img) => img.image_url) : [],
+      amenities: r.amenities ? r.amenities.map((a) => ({ id: a.id, name: a.name, category: a.category })) : [],
     }));
   }
 
   async getRoomById(id: number) {
     const room = await this.roomRepository.findOne({
       where: { id },
-      relations: ['apartment', 'room_type', 'images'],
+      relations: ['apartment', 'room_type', 'images', 'amenities'],
     });
 
     if (!room) {
@@ -71,7 +74,9 @@ export class RoomsService {
       status: room.status,
       base_price: room.room_type ? Number(room.room_type.base_price) : 0,
       max_occupancy: room.room_type ? room.room_type.max_occupancy : 2,
+      last_maintenance_date: room.last_maintenance_date,
       images: room.images ? room.images.map((img) => img.image_url) : [],
+      amenities: room.amenities ? room.amenities.map((a) => ({ id: a.id, name: a.name, category: a.category })) : [],
     };
   }
 

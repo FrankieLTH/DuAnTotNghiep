@@ -218,4 +218,8 @@ export class BookingsService {
       refund_reason: refund.reason,
     };
   }
+
+  async getVouchers() {
+    return this.voucherRepository.find({ where: { is_active: true } });
+  }
 }

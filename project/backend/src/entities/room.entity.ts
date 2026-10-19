@@ -1,4 +1,4 @@
-import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn, ManyToOne, JoinColumn, OneToMany } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn, ManyToOne, JoinColumn, OneToMany, ManyToMany, JoinTable } from 'typeorm';
 
 @Entity('apartments')
 export class Apartment {
@@ -72,6 +72,14 @@ export class Room {
 
   @OneToMany(() => RoomImage, (image) => image.room)
   images: RoomImage[];
+
+  @ManyToMany(() => Amenity)
+  @JoinTable({
+    name: 'room_amenities',
+    joinColumn: { name: 'room_id', referencedColumnName: 'id' },
+    inverseJoinColumn: { name: 'amenity_id', referencedColumnName: 'id' },
+  })
+  amenities: Amenity[];
 }
 
 @Entity('amenities')

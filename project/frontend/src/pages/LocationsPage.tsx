@@ -9,99 +9,51 @@ interface LocationsPageProps {
 const LOCATIONS_DATA = [
   {
     id: 1,
-    title: 'Bãi Sau (Thùy Vân)',
-    branch: 'CN 1 • Triển Núi Nhỏ',
-    distance: '300m',
+    title: 'Hồ Hoàn Kiếm & Đền Ngọc Sơn',
+    branch: 'CN 1 • Sunshine Villa Phố Cổ (Hà Nội)',
+    distance: '350m',
+    tag: 'DI TÍCH LỊCH SỬ',
+    imageUrl: 'https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=800&q=80',
+  },
+  {
+    id: 2,
+    title: 'Chợ Đồng Xuân & Phố Ẩm Thực',
+    branch: 'CN 1 • Sunshine Villa Phố Cổ (Hà Nội)',
+    distance: '200m',
+    tag: 'ẨM THỰC PHỐ CỔ',
+    imageUrl: 'https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&w=800&q=80',
+  },
+  {
+    id: 3,
+    title: 'Bãi Biển Mỹ Khê',
+    branch: 'CN 2 • Ocean Breeze View Biển (Đà Nẵng)',
+    distance: '100m',
     tag: 'TẮM BIỂN & BÌNH MINH',
     imageUrl: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80',
   },
   {
-    id: 2,
-    title: 'Đường Ven Biển Hạ Long',
-    branch: 'CN 2 • Lưng Chừng Biển',
-    distance: '150m',
-    tag: 'CUNG ĐƯỜNG ĐẸP NHẤT',
-    imageUrl: 'https://images.unsplash.com/photo-1519046904884-53103b34b206?auto=format&fit=crop&w=800&q=80',
-  },
-  {
-    id: 3,
-    title: 'Vịnh Biển Bãi Trước',
-    branch: 'CN 2 • Lưng Chừng Biển',
-    distance: '200m',
-    tag: 'HOÀNG HÔN RỰC RỠ',
-    imageUrl: 'https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=800&q=80',
-  },
-  {
     id: 4,
-    title: 'Cáp Treo Núi Lớn',
-    branch: 'CN 2 • Lưng Chừng Biển',
-    distance: '1.2km',
-    tag: 'CHECK-IN TOÀN CẢNH',
+    title: 'Bán Đảo Sơn Trà & Chùa Linh Ứng',
+    branch: 'CN 2 • Ocean Breeze View Biển (Đà Nẵng)',
+    distance: '3.5km',
+    tag: 'CẢNH SẮC THIÊN NHIÊN',
     imageUrl: 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80',
   },
   {
     id: 5,
-    title: 'Đồi Con Heo',
-    branch: 'CN 1 • Triển Núi Nhỏ',
-    distance: '500m',
-    tag: 'GÓC NHÌN ĐỒI CỎ',
+    title: 'Đồi Thông Hoàng Hoa Thám',
+    branch: 'CN 3 • Pine Hill Studio (Đà Lạt)',
+    distance: '50m',
+    tag: 'SĂN MÂY BÌNH MINH',
     imageUrl: 'https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?auto=format&fit=crop&w=800&q=80',
   },
   {
     id: 6,
-    title: 'Đảo Hòn Bà',
-    branch: 'CN 1 • Triển Núi Nhỏ',
-    distance: '800m',
-    tag: 'CON ĐƯỜNG DƯỚI BIỂN',
-    imageUrl: 'https://images.unsplash.com/photo-1518837695005-2083093ee35b?auto=format&fit=crop&w=800&q=80',
-  },
-  {
-    id: 7,
-    title: 'Hẻm Cây Biển Hạ Long',
-    branch: 'GÓC THƠ MỘNG',
-    distance: '100m',
-    tag: 'SỐNG ẢO VINTAGE',
-    imageUrl: 'https://images.unsplash.com/photo-1448375240586-882707db888b?auto=format&fit=crop&w=800&q=80',
-  },
-  {
-    id: 8,
-    title: 'Bạch Dinh Vũng Tàu',
-    branch: 'CN 2 • Lưng Chừng Biển',
-    distance: '1.5km',
-    tag: 'KIẾN TRÚC PHÁP CỔ',
-    imageUrl: 'https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=800&q=80',
-  },
-  {
-    id: 9,
-    title: 'Bãi Trước Hoàng Hôn',
-    branch: 'VŨNG TÀU',
-    distance: '300m',
-    tag: 'NGẮM MẶT TRỜI LẶN',
-    imageUrl: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80',
-  },
-  {
-    id: 10,
-    title: 'Mũi Nghinh Phong',
-    branch: 'CN 1 • Triển Núi Nhỏ',
-    distance: '1km',
-    tag: 'CỔNG TRỜI VŨNG TÀU',
-    imageUrl: 'https://images.unsplash.com/photo-1472214103451-9374bd1c798e?auto=format&fit=crop&w=800&q=80',
-  },
-  {
-    id: 11,
-    title: 'Vịnh Núi Lớn',
-    branch: 'CN 2 • Lưng Chừng Biển',
+    title: 'Hồ Xuân Hương & Chợ Đêm Đà Lạt',
+    branch: 'CN 3 • Pine Hill Studio (Đà Lạt)',
     distance: '1.8km',
-    tag: 'MỘC MẠC YÊN BÌNH',
-    imageUrl: 'https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=800&q=80',
-  },
-  {
-    id: 12,
-    title: 'Kè Đá Bãi Trước',
-    branch: 'CN 2 • ĐI DẠO THONG DONG',
-    distance: '250m',
-    tag: 'Gió BIỂN CHIỀU LỘNG',
-    imageUrl: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80',
+    tag: 'DẠO BỘ & CHECK-IN',
+    imageUrl: 'https://images.unsplash.com/photo-1518837695005-2083093ee35b?auto=format&fit=crop&w=800&q=80',
   },
 ];
 
@@ -109,8 +61,9 @@ export const LocationsPage: React.FC<LocationsPageProps> = ({ onGoHome, onSelect
   const [selectedBranchFilter, setSelectedBranchFilter] = useState<string>('all');
 
   const filteredLocations = LOCATIONS_DATA.filter((item) => {
-    if (selectedBranchFilter === 'cn1' && !item.branch.includes('CN 1')) return false;
-    if (selectedBranchFilter === 'cn2' && !item.branch.includes('CN 2')) return false;
+    if (selectedBranchFilter === 'hanoi' && !item.branch.includes('Hà Nội')) return false;
+    if (selectedBranchFilter === 'danang' && !item.branch.includes('Đà Nẵng')) return false;
+    if (selectedBranchFilter === 'dalat' && !item.branch.includes('Đà Lạt')) return false;
     return true;
   });
 
@@ -128,13 +81,13 @@ export const LocationsPage: React.FC<LocationsPageProps> = ({ onGoHome, onSelect
           <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-4">
             <div>
               <span className="text-xs font-bold tracking-widest uppercase text-brand-terracotta bg-brand-tint px-3 py-1 rounded-full inline-block mb-2">
-                TỌA ĐỘ KẾT NỐI • VŨNG TÀU
+                HỆ THỐNG 3 CHI NHÁNH HOMESTAY
               </span>
               <h1 className="text-3xl md:text-4xl font-serif font-bold text-brand-earth">
-                Khám Phá Địa Điểm Nổi Bật Quanh Đồi Bông Gòn
+                Khám Phá Địa Điểm Nổi Bật Quanh Homestay
               </h1>
               <p className="text-sm font-sans text-brand-earth/80 mt-2 max-w-2xl leading-relaxed">
-                Bộ sưu tập những tọa độ biển thơ mộng, góc phố bình yên và phong vị bản địa chỉ cách homestay ít phút thong dong.
+                Bộ sưu tập những tọa độ văn hóa, biển cả và sương mây bản địa quanh các chi nhánh Hà Nội, Đà Nẵng và Đà Lạt.
               </p>
             </div>
 
@@ -148,27 +101,37 @@ export const LocationsPage: React.FC<LocationsPageProps> = ({ onGoHome, onSelect
                     : 'text-brand-earth/80 hover:bg-secondary-cream'
                 }`}
               >
-                Tất cả chi nhánh
+                Tất cả
               </button>
               <button
-                onClick={() => setSelectedBranchFilter('cn1')}
+                onClick={() => setSelectedBranchFilter('hanoi')}
                 className={`px-4 py-2 text-xs font-bold rounded-lg transition-all ${
-                  selectedBranchFilter === 'cn1'
+                  selectedBranchFilter === 'hanoi'
                     ? 'bg-brand-earth text-white shadow-xs'
                     : 'text-brand-earth/80 hover:bg-secondary-cream'
                 }`}
               >
-                CN 1 - Triển Núi Nhỏ
+                Hà Nội
               </button>
               <button
-                onClick={() => setSelectedBranchFilter('cn2')}
+                onClick={() => setSelectedBranchFilter('danang')}
                 className={`px-4 py-2 text-xs font-bold rounded-lg transition-all ${
-                  selectedBranchFilter === 'cn2'
+                  selectedBranchFilter === 'danang'
                     ? 'bg-brand-earth text-white shadow-xs'
                     : 'text-brand-earth/80 hover:bg-secondary-cream'
                 }`}
               >
-                CN 2 - Lưng Chừng Biển
+                Đà Nẵng
+              </button>
+              <button
+                onClick={() => setSelectedBranchFilter('dalat')}
+                className={`px-4 py-2 text-xs font-bold rounded-lg transition-all ${
+                  selectedBranchFilter === 'dalat'
+                    ? 'bg-brand-earth text-white shadow-xs'
+                    : 'text-brand-earth/80 hover:bg-secondary-cream'
+                }`}
+              >
+                Đà Lạt
               </button>
             </div>
           </div>

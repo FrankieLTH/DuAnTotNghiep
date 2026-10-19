@@ -1,10 +1,13 @@
 import React, { useState } from 'react';
 import { Navbar } from './components/home/Navbar';
 import { HeroSection } from './components/home/HeroSection';
-import { VoucherPromoBanner } from './components/home/VoucherPromoBanner';
-import { FeaturedRoomsSection } from './components/home/FeaturedRoomsSection';
-import { BranchesSection } from './components/home/BranchesSection';
-import { AttractionsSection } from './components/home/AttractionsSection';
+import { ArtIntroSection } from './components/home/ArtIntroSection';
+import { PromoVoucherSection } from './components/home/PromoVoucherSection';
+import { SpacesBentoSection } from './components/home/SpacesBentoSection';
+import { ServicesSection } from './components/home/ServicesSection';
+import { HighlightPlacesSection } from './components/home/HighlightPlacesSection';
+import { QuoteStatsSection } from './components/home/QuoteStatsSection';
+import { RoomSelectionSection } from './components/home/RoomSelectionSection';
 import { TestimonialsSection } from './components/home/TestimonialsSection';
 import { Footer } from './components/home/Footer';
 import { AIChatWidget } from './components/home/AIChatWidget';
@@ -59,7 +62,7 @@ function App() {
   return (
     <div className="min-h-screen bg-[#FAF7F2] text-[#3E2C23] font-sans antialiased flex flex-col justify-between">
       <div>
-        {/* Navbar (Stays persistent across views) */}
+        {/* Navbar (Fixed/Transparent across views) */}
         <Navbar
           onOpenBookingModal={() => handleNavigate('room-list')}
           onNavigate={handleNavigate}
@@ -68,62 +71,96 @@ function App() {
 
         {/* View Router */}
         {currentView === 'home' && (
-          <>
+          <main>
+            {/* 1. Hero & Floating Search Booking */}
             <HeroSection onSearch={handleSearch} />
-            <VoucherPromoBanner onApplyVoucher={() => handleNavigate('vouchers')} />
-            <FeaturedRoomsSection onSelectRoom={handleSelectRoom} />
-            <BranchesSection />
-            <AttractionsSection />
+
+            {/* 2. Intro: Homestay Nghệ Thuật */}
+            <ArtIntroSection />
+
+            {/* 3. Dual Promo Banner */}
+            <PromoVoucherSection onApplyVoucher={() => handleNavigate('vouchers')} />
+
+            {/* 4. Bento Grid: Không Gian Lưu Trú */}
+            <SpacesBentoSection onExplore={() => handleNavigate('room-list')} />
+
+            {/* 5. Dịch Vụ: 4 Vertical Cards */}
+            <ServicesSection />
+
+            {/* 6. Các Địa Điểm Nổi Bật: Filter Tabs + 12 Cards Grid */}
+            <HighlightPlacesSection onExploreMore={() => handleNavigate('locations')} />
+
+            {/* 7. Dark Quote & 4 Stats */}
+            <QuoteStatsSection />
+
+            {/* 8. Tìm Phòng Phù Hợp: 4 Room Cards */}
+            <RoomSelectionSection onSelectRoom={handleSelectRoom} />
+
+            {/* 9. Đánh Giá Khách Hàng */}
             <TestimonialsSection />
-          </>
+          </main>
         )}
 
         {currentView === 'room-list' && (
-          <RoomListPage
-            onSelectRoom={handleSelectRoom}
-            onGoHome={() => handleNavigate('home')}
-          />
+          <div className="pt-24">
+            <RoomListPage
+              onSelectRoom={handleSelectRoom}
+              onGoHome={() => handleNavigate('home')}
+            />
+          </div>
         )}
 
         {currentView === 'room-detail' && (
-          <RoomDetailPage
-            roomId={selectedRoomId}
-            onGoBack={() => handleNavigate('room-list')}
-            onProceedToCheckout={handleProceedToCheckout}
-          />
+          <div className="pt-24">
+            <RoomDetailPage
+              roomId={selectedRoomId}
+              onGoBack={() => handleNavigate('room-list')}
+              onProceedToCheckout={handleProceedToCheckout}
+            />
+          </div>
         )}
 
         {currentView === 'checkout' && (
-          <CheckoutPage
-            bookingData={bookingData}
-            onGoBack={() => handleNavigate('room-detail')}
-            onCompleteBooking={() => handleNavigate('my-account')}
-          />
+          <div className="pt-24">
+            <CheckoutPage
+              bookingData={bookingData}
+              onGoBack={() => handleNavigate('room-detail')}
+              onCompleteBooking={() => handleNavigate('my-account')}
+            />
+          </div>
         )}
 
         {currentView === 'my-account' && (
-          <MyAccountPage
-            onGoHome={() => handleNavigate('home')}
-            onBookRoom={() => handleNavigate('room-list')}
-          />
+          <div className="pt-24">
+            <MyAccountPage
+              onGoHome={() => handleNavigate('home')}
+              onBookRoom={() => handleNavigate('room-list')}
+            />
+          </div>
         )}
 
         {currentView === 'support' && (
-          <SupportPage onGoHome={() => handleNavigate('home')} />
+          <div className="pt-24">
+            <SupportPage onGoHome={() => handleNavigate('home')} />
+          </div>
         )}
 
         {currentView === 'locations' && (
-          <LocationsPage
-            onGoHome={() => handleNavigate('home')}
-            onSelectBranchRooms={() => handleNavigate('room-list')}
-          />
+          <div className="pt-24">
+            <LocationsPage
+              onGoHome={() => handleNavigate('home')}
+              onSelectBranchRooms={() => handleNavigate('room-list')}
+            />
+          </div>
         )}
 
         {currentView === 'vouchers' && (
-          <VouchersPage
-            onGoHome={() => handleNavigate('home')}
-            onBookNow={() => handleNavigate('room-list')}
-          />
+          <div className="pt-24">
+            <VouchersPage
+              onGoHome={() => handleNavigate('home')}
+              onBookNow={() => handleNavigate('room-list')}
+            />
+          </div>
         )}
       </div>
 

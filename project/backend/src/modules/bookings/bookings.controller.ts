@@ -6,6 +6,11 @@ import { JwtAuthGuard } from '../auth/jwt-auth.guard';
 export class BookingsController {
   constructor(private readonly bookingsService: BookingsService) {}
 
+  @Get('../vouchers')
+  async getVouchers() {
+    return this.bookingsService.getVouchers();
+  }
+
   @Post('../vouchers/apply')
   async applyVoucher(@Body() body: { code: string; order_value: number }) {
     return this.bookingsService.applyVoucher(body.code, body.order_value);
