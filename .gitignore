@@ -6,6 +6,10 @@ node_modules/
 dist/
 build/
 .output/
+.vite/
+
+# Generated interface inspection reports and screenshots
+.taste-skill/
 
 # Environment files
 .env
